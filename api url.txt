@@ -1,0 +1,201 @@
+Power off (standby)
+http://{{ambeo.ip}}/api/setData?path=espresso%3AappRequestedStandby&role=value&value=%7B%22type%22%3A%22bool_%22%2C%22bool_%22%3Atrue%7D&_nocache={{$timestamp}}
+
+Power on (work with nocache)
+http://{{ambeo.ip}}/api/setData?path=espresso%3AappRequestedOnline&role=value&value=%7B"type"%3A"bool_"%2C"bool_"%3Atrue%7D&_nocache={{$timestamp}}
+
+reboot
+http://{{ambeo.ip}}/api/setData?path=ui%3A%2Fsettings%2Fsystem%2Frestart&role=activate&value=%7B%22type%22%3A%22bool_%22%2C%22bool_%22%3Atrue%7D&_nocache={{$timestamp}}
+
+Night mode on
+http://{{ambeo.ip}}/api/setData?path=espresso%3AnightModeUi&role=value&value=%7B%22type%22%3A%22bool_%22%2C%22bool_%22%3Atrue%7D&_nocache={{$timestamp}}
+Night mode off
+http://{{ambeo.ip}}/api/setData?path=espresso%3AnightModeUi&role=value&value=%7B%22type%22%3A%22bool_%22%2C%22bool_%22%3Afalse%7D&_nocache={{$timestamp}}
+
+Power status
+http://{{ambeo.ip}}/api/getData?path=powermanager%3Atarget&roles=%40all&_nocache={{$timestamp}}
+On (json return from ambeo)
+{
+    "path": "powermanager:target",
+    "value": {
+        "type": "powerTarget",
+        "powerTarget": {
+            "reason": "userActivity",
+            "target": "online",
+            "nextReason": "none",
+            "nextTarget": "none"
+        }
+    },
+    "timestamp": 1707350884380,
+    "type": "value"
+}
+off/standby (json return from ambeo)
+{
+    "path": "powermanager:target",
+    "value": {
+        "type": "powerTarget",
+        "powerTarget": {
+            "reason": "host",
+            "target": "networkStandby",
+            "nextReason": "none",
+            "nextTarget": "none"
+        }
+    },
+    "timestamp": 1707351166858,
+    "type": "value"
+}
+
+
+List input
+http://{{ambeo.ip}}/api/getRows?path=espresso%3A&roles=%40all&from=0&to=17&_nocache={{$timestamp}}
+{
+    "rowsVersion": 0,
+    "rows": [
+        {
+            "path": "espresso:HDMI1",
+            "timestamp": 1707350698249,
+            "title": "HDMI1",
+            "type": "action"
+        },
+        {
+            "path": "espresso:HDMI2",
+            "timestamp": 1707350698250,
+            "title": "HDMI2",
+            "type": "action"
+        },
+        {
+            "path": "espresso:HDMI3",
+            "timestamp": 1707350698250,
+            "title": "HDMI3",
+            "type": "action"
+        },
+        {
+            "path": "espresso:HDMIARC",
+            "timestamp": 1707350698251,
+            "title": "HDMIARC",
+            "type": "action"
+        },
+        {
+            "path": "espresso:bluetooth",
+            "timestamp": 1707350698252,
+            "title": "bluetooth",
+            "type": "action"
+        },
+        {
+            "path": "espresso:googlecast",
+            "disabled": true,
+            "timestamp": 1707350698253,
+            "title": "googlecast",
+            "type": "action"
+        },
+        {
+            "path": "espresso:UPnP",
+            "disabled": true,
+            "timestamp": 1707350698257,
+            "title": "UPnP",
+            "type": "action"
+        },
+        {
+            "path": "espresso:Optical",
+            "timestamp": 1707350698258,
+            "title": "Optical",
+            "type": "action"
+        },
+        {
+            "path": "espresso:AUX",
+            "timestamp": 1707350698258,
+            "title": "AUX",
+            "type": "action"
+        },
+        {
+            "path": "espresso:spotify",
+            "timestamp": 1707350701672,
+            "title": "spotify",
+            "type": "action"
+        },
+        {
+            "path": "espresso:AES",
+            "timestamp": 1707350698287,
+            "title": "AES",
+            "type": "action"
+        },
+        {
+            "path": "espresso:airplay",
+            "timestamp": 1707350698313,
+            "title": "airplay",
+            "type": "action"
+        },
+        {
+            "path": "espresso:avs",
+            "timestamp": 1707350698319,
+            "title": "avs",
+            "type": "action"
+        },
+        {
+            "path": "espresso:tidal",
+            "disabled": true,
+            "timestamp": 1707350698320,
+            "title": "tidal",
+            "type": "action"
+        },
+        {
+            "path": "espresso:tuneIn",
+            "timestamp": 1707350698320,
+            "title": "tuneIn",
+            "type": "action"
+        },
+        {
+            "path": "espresso:Toggle_Next",
+            "timestamp": 1707350698321,
+            "title": "Toggle_Next",
+            "type": "action"
+        },
+        {
+            "path": "espresso:Toggle_Prev",
+            "timestamp": 1707350698322,
+            "title": "Toggle_Prev",
+            "type": "action"
+        }
+    ],
+    "roles": {
+        "containerType": "none",
+        "path": "espresso:",
+        "timestamp": 1707350698189,
+        "title": "Espresso",
+        "type": "container"
+    },
+    "rowsCount": 17
+}
+
+get input name hdmiarc (to get custom name)
+http://{{ambeo.ip}}/api/getData?path=settings%3A%2Fespresso%2FinputNames%2Fhdmiarc&roles=value&_nocache={{$timestamp}}
+[
+    {
+        "string_": "TV",
+        "type": "string_"
+    }
+]
+get input name hdmi1(to get custom name)
+http://{{ambeo.ip}}/api/getData?path=settings%3A%2Fespresso%2FinputNames%2Fhdmi1&roles=value&_nocache={{$timestamp}}
+[
+    {
+        "string_": "Fire TV",
+        "type": "string_"
+    }
+]
+
+Input number is from the list and add A[positionid] hmdi1 is A0 hdmi2 is A1 etc
+change to input earc
+http://{{ambeo.ip}}/api/setData?path=espresso%3AaudioInputID&role=value&value=%7B%22type%22%3A%22i32_%22%2C%22i32_%22%3A3%7D&_nocache={{$timestamp}}
+change to input hmd1
+http://{{ambeo.ip}}/api/setData?path=espresso%3AaudioInputID&role=value&value=%7B%22type%22%3A%22i32_%22%2C%22i32_%22%3A0%7D&_nocache={{$timestamp}}
+change to input hmd2
+http://{{ambeo.ip}}/api/setData?path=espresso%3AaudioInputID&role=value&value=%7B%22type%22%3A%22i32_%22%2C%22i32_%22%3A1%7D&_nocache={{$timestamp}}
+change to input hmd3
+http://{{ambeo.ip}}/api/setData?path=espresso%3AaudioInputID&role=value&value=%7B%22type%22%3A%22i32_%22%2C%22i32_%22%3A2%7D&_nocache={{$timestamp}}
+change to input optical
+http://{{ambeo.ip}}/api/setData?path=espresso%3AaudioInputID&role=value&value=%7B%22type%22%3A%22i32_%22%2C%22i32_%22%3A7%7D&_nocache={{$timestamp}}
+
+Volume A0 to A100 looks like % from 0% to 100%
+http://{{ambeo.ip}}/api/setData?path=player%3Avolume&role=value&value=%7B%22type%22%3A%22i32_%22%2C%22i32_%22%3A19%7D&_nocache={{$timestamp}}
+http://{{ambeo.ip}}/api/setData?path=player%3Avolume&role=value&value=%7B%22type%22%3A%22i32_%22%2C%22i32_%22%3A100%7D&_nocache={{$timestamp}}
